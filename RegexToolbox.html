@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<!--
+
+  RegexToolbox (Widget) for Apple Dashboard
+  Regular Expression Evaluator & Testing Tool
+
+  Release: 1.0
+  Author:  Paul Chandler <regextoolbox@mac.com>
+  Date:    August 10th, 2005
+
+-->
+<head>
+<title>RegexToolbox</title>
+<style type="text/css">
+  @import "RegexToolbox.css";
+</style>
+<script type="text/javascript" src="RegexToolbox.js" charset="utf-8" />
+</script>
+</head>
+<body onload="setup();">
+<div id="front" onmousemove='mousemove(event)' onmouseout='mouseexit()'>
+
+<div class="flip" id="flip" onclick="showPrefs(event)" onmouseover="enterflip(event)" onmouseout="exitflip(event)"></div>
+<div class="flip" id="fliprollie"></div>
+
+<map name="main">
+<area shape="rect" coords="518,52,538,72" href="javascript:cheat()">
+<area shape="rect" coords="193,389,301,396" href="mailto:regextoolbox@mac.com?subject=RegexToolbox">
+<area shape="rect" coords="312,389,366,396" href="javascript:donate()">
+</map>
+<img src="RegexToolbox.png" width="557" height="400" border="0" usemap="#main">
+
+<form name="primary" onsubmit="return false">
+<div id="expression"><textarea size="50" rows="1" id="expression_input" name="re" maxlength="1024" onkeyup="recalc()" /></textarea></div>
+<!--<div id="expression"><input type="text" size="50" id="expression_input" name="re" maxlength="1024" onkeyup="recalc()" /></div>-->
+<div id="sample"><textarea cols="45" rows="4" id="sample_input" name="sa" onkeyup="recalc()">http://www.google.com/
+http://www.apple.com/</textarea></div>
+<div id="results"></div>
+</form>
+
+</div>
+<div id="back">
+<img src="Default.png" width="557" height="400" border="0" usemap="#main">
+
+<div id="help">
+A <b>regular expression</b> (abbreviated as <b>regexp</b>, <b>regex</b>, or <b>regxp</b>, with plural forms <b>regexps</b>, <b>regexes</b>, or <b>regexen</b>) is a string that describes or matches a set of strings, according to certain syntax rules.<br /><br />
+Taken from <a href="javascript:exto('http://www.wikipedia.org/')">Wikipedia</a>, the free encyclopedia.<br />
+
+<p>RegexToolbox allows you to construct and test regular expressions. It supports text substitution and pattern matching. The basic Perl subset is supported, including backreferences ($1, $2, ...). Note: backreferences in the expression should be "\1", \2, ... Use the "$" syntax in the replacement section.</p>
+<p>Substitutions operate in multi-line mode, matches individually. Backslashes to escape the regex separator will not work. Custom separators are supported, for example: s/abc/def/ can be written as s|abc|def|</p>
+
+[ <a href="javascript:exto('http://en.wikipedia.org/wiki/Perl_regular_expression_examples')" target="_blank">Quick Reference Guide</a> ]<br />
+
+<br /><br />
+[ <a href="javascript:hidePrefs(event);" target="_blank">Done</a> ]<br />
+
+</div>
+</div>
+
+<div id="cheat">
+<h1>RegexToolbox Regular Expression List</h1>
+
+<dl>
+<dt>Sample Data</dt><dd>
+
+<a href="javascript:isl('949-555-1234\n716-555-1234\n858.211.2333\n(716) 231-5844')">Telephone Numbers</a><br />
+<a href="javascript:isl('454-55-7854\n787-99-6666\n121-77-4444\n121-99-6999')">Social Security Numbers</a><br />
+<a href="javascript:isl('10.1.1.0\n172.16.1.1\n192.168.1.10\n255.255.255.0')">IP Addresses</a><br />
+<a href="javascript:isl('spam@hotmail.com\nspam@abc.com\npostmaster@site.co.uk\nfirst.last@prefix-suffix.domain.com')">Email Addresses</a><br />
+<a href="javascript:isl('One, Two, Three, Three, Four\nOne,Two,Three,Three,Four\nA,B,C,D,E,f,g,h,i,j,j,j\nOne, Two')">CSV List</a><br />
+<a href="javascript:isl('Duplicate Line\nDuplicate Line\nNormal Line 1\nNormal Line 2')">Duplicate Line List</a><br />
+</dd>
+</dl>
+
+
+<dl>
+<dt>Telephone Number (US)</dt><dd><a href="javascript:ixl('m/^\\D*(\\d{3})\\D*(\\d{3})\\D*(\\d{4})$/')">m/^\D*(\d{3})\D*(\d{3})\D*(\d{4})$/</a><br />This expression has the advantage of stripping off every reasonable delimeter. It does not work with letters instead of numbers.</dd>
+<dt>Whitespace Trimming</dt><dd><a href="javascript:ixl('s/^[ \\t]+|[ \\t]+$//g')">s/^[ \t]+|[ \t]+$//g</a><br />Expression is meant for multi-line mode. Remove the "g" modifier for single mode operation.</dd>
+<dt>IP Addresses</dt><dd><a href="javascript:ixl('m/^(?:\\d{1,3}\\.){3}\\d{1,3}$/')">m/^(?:\d{1,3}\.){3}\d{1,3}$/</a><br />Simple validation test. Validates each number for 0-999.<br/><a href="javascript:ixl('m/^(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})$/')">m/^(\d{1,3})\.(\d{1,3})\.(\d{1,3})\.(\d{1,3})$/</a><br />Separate into four bytes. Validates each number 0-999.<br/><a href="javascript:ixl('m/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/')">m/^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/</a><br />Separate into four bytes and verify every digit so that all values are valid (0-255).</dd>
+<dt>Duplicate Line Removal</dt><dd><a href="javascript:ixl('s/^(.*)(\\r?\\n\\1)+$/$1/gm')">s/^(.*)(\r?\n\1)+$/$1/gm</a><br />Simple solution for removing duplicate lines.</dd>
+<dt>Duplicate CSV Removal</dt><dd><a href="javascript:ixl('s/(?<=,|^)([^,]*)(,\\1)+(?=,|$)/$1/g')">s/(?&lt;=,|^)([^,]*)(,\1)+(?=,|$)/$1/g</a><br />Removes consecutive duplicate entries found within a comma separated list.</dd>
+<dt>Basic email validation</dt><dd><a href="javascript:ixl('m/[\\w]+@[\\w]+.[\\w]{2,4}/')">m/[\w]+@[\w]+.[\w]{2,4}/</a><br />Returns the address if it matches.</dd>
+
+</dl>
+
+</div>
+</body>
+</html>

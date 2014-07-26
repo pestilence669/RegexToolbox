@@ -1,0 +1,131 @@
+/*******************************************************************************
+
+   RegexToolbox (Widget) for Apple Dashboard
+   Regular Expression Evaluator & Testing Tool
+
+   Release: 1.0
+   Author:  Paul Chandler <regextoolbox@mac.com>
+   Date:    August 10th, 2005
+
+*******************************************************************************/
+
+body, form {
+  margin: 0
+}
+
+body {
+  font: 10px "Lucida Grande";
+}
+
+div.caption {
+  color: white;
+  position: absolute;
+  left: 0px;
+  width: 557px;
+  text-align: center;
+}
+
+div#expression_caption { top: 35px }
+div#sample_caption     { top: 75px }
+div#results_caption    { top: 180px } 
+div#expression { position: absolute; left: 18px; top: 52px }
+input#expression_input { margin-left: 50px; width: 450px; height: 72px; opacity: 0.6 }
+textarea#expression_input { margin-left: 50px; width: 450px; opacity: 0.6; overflow: none; scroll: none }
+
+div#back { display: none }
+
+div#sample { position: absolute; left: 18px; top: 90px }
+textarea#sample_input { width: 520px; height: 67px; opacity: 0.6 }
+
+div#results {
+  position: absolute;
+  left: 18px;
+  top: 196px;
+  width: 512px;
+  height: 170px;
+  background-color: white;
+  border: solid 1px #9ab;
+  opacity: 0.6;
+  padding: 3px;
+  color: black;
+  font: 10px "Lucida Grande";
+  scroll: auto;
+  overflow: auto
+}
+
+div#help {
+  position: absolute;
+  left: 18px;
+  top: 75px;
+  width: 512px;
+  height: 266px;
+  background-color: white;
+  border: solid 1px black;
+  opacity: 0.6;
+  padding: 3px;
+  color: black;
+  font: 10px "Lucida Grande";
+  scroll: auto;
+  overflow: auto
+}
+
+div#cheat {
+  position: absolute;
+  left: 90px;
+  top: 72px;
+  width: 450px;
+  height: 309px;
+  background-color: #dfefff;
+  border: solid 1px #9ab;
+  padding: 3px;
+  color: black;
+  font: 10px "Lucida Grande";
+  opacity: 0.9;
+  scroll: auto;
+  overflow: auto;
+  display: none;
+  z-index: 9000;
+}
+
+div#cheat h1 {
+  font: bold 11px "Lucida Grande";
+  color: #333; margin-top: 0
+}
+
+div#cheat dl dt {
+  font: bold 11px "Lucida Grande";
+  color: #555;
+}
+
+div#cheat dl dd {
+  font: normal 11px "Lucida Grande";
+  color: #777;
+}
+
+
+input#done {
+  background-color: blue;
+}
+
+div#donate_form { visibility: hidden }
+
+.flip {
+        position:absolute;
+        bottom: 10px;
+        right: 10px;
+        width:13px;
+        height:13px;
+}
+
+#flip {
+        opacity:0;
+        background: url(file:///System/Library/WidgetResources/ibutton/white_i.png) no-repeat top left;
+        z-index:8000;
+}
+
+#fliprollie {
+        display:none;
+        opacity:0.25;
+        background: url(file:///System/Library/WidgetResources/ibutton/white_rollie.png) no-repeat top left;
+        z-index:7999
+}
